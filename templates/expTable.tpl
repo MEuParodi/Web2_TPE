@@ -10,6 +10,8 @@
             <th scope="col">description</th>
             <th scope="col">boat</th>
             <th scope="col">accions</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
 
@@ -21,10 +23,13 @@
                 <td> {$exp->price} </td> 
                 <td> {$exp->description|truncate:60} </td> 
                 <td> {$exp->boat_id} </td>
-                <td> <a href='experiences/{$exp->exp_id}' type='button' class='btn btn-success'>Show details</a> </td>
-                
+                <td> <a href='experience/{$exp->exp_id}' type='button' class='btn btn-success'>Show details</a> </td>
+                <td> <a href='modify/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Modify</a> </td>
+                <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
             </tr>
          {/foreach}
     </tbody> 
 </table>
-  
+
+<p><a href='add/experience' type="button" class="btn btn-outline-primary">Add experience</a> </p>
+

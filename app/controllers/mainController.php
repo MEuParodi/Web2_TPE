@@ -35,7 +35,6 @@ class MainController{
         }
         $this->expView->showExps($exps);
         $this->showFilterByBoat();
-
     }
 
     public function showExpById($id){
@@ -44,16 +43,16 @@ class MainController{
         $this->expView->showExpById($exp, $boat);
     }
 
-    public function addExp(){
-        $newExp = $_GET['exp']; //esto lo toma del formulario
-     //   $id = $this->expModel->insert($newExp); //el id por ahora no se usa
-        
-        header("Location" . BASE_URL);
-    }
- 
     public function deleteExpById($id){
         $this->expModel->deleteById($id);
-        header("Location" . BASE_URL);
+        $this->showAllExp();
+    }
+
+    public function deleteBoatById($id){
+       $this->boatsModel->deleteById($id);
+       $this->showAllBoats();
+
+//       header("Location: " . BASE_URL);
 
     }
 
@@ -62,16 +61,24 @@ class MainController{
         $this->expView->showAllBoats($boats);
     }
 
-    function addBoat() {
-        $place = $_POST['place'];
-        $days = $_POST['days'];
-        $price = $_POST['price'];
-        $description = $_POST['description'];
-        $boat_id = $_POST['boat_id'];
+    function insertBoat() {
+        $name = $_GET['name'];
+        $capacity = $_GET['capacity'];
+        $model = $_GET['model'];
+        //verificar que los parametros vengan correctamente para poder insertar bien
+        $id = $this->boatsModel->insertBoat($name, $capacity, $model); 
+        $this->showAllBoats();
+    }
 
-        $id = $this->model->insertBoat($place, $days, $price, $description, $boat_id);
-
-        header("Location: " . BASE_URL); 
+    function insertExp() {
+        $place = $_GET['place'];
+        $days = $_GET['days'];
+        $price = $_GET['price'];
+        $description = $_GET['description'];
+        $boat_id = $_GET['boat_id'];
+     //verificar que los parametros vengan correctamente para poder insertar bien 
+        $id = $this->expModel->insertExp($place, $days, $price, $description, $boat_id);
+        $this->showAllExp();
     }
 
     function showFilterByBoat(){
@@ -79,5 +86,22 @@ class MainController{
         $this->expView->showFilterByBoat($boats);
     }
     
-    
+    function add ($tupla){
+        if ($tupla == 'boat'){
+            $this->expView->showFormAddBoat();
+        } else { 
+            if ($tupla == 'experience'){
+                $boats = $this->boatsModel->getAll();
+                $this->expView->showFormAddExp($boats);
+            }
+        }
+    }
+
+    function modifyExpById($id){
+        return;
+    }
+
+    function modifyBoatById($id){
+        return;
+    }
 }

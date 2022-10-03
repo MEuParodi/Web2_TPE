@@ -32,14 +32,14 @@ class ExpModel {
         return $exps;
     }
 
-        public function insert($place, $days, $price, $description, $boat_id) {
+        public function insertExp($place, $days, $price, $description, $boat_id) {
         $query = $this->db->prepare("INSERT INTO experiences (place, days, price, description, boat_id) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$place, $days, $price, $description, $boat_id]);
         return $this->db->lastInsertId();
     }
 
     function deleteById($id) {
-        $query = $this->db->prepare('DELETE FROM experiences WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM experiences WHERE exp_id = ?');
         $query->execute([$id]);
     }
 

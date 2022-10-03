@@ -14,7 +14,7 @@
     <header>
       <nav class="nav">
         <a class="nav-link active" aria-current="page" href="">Home</a>
-        <a class="nav-link" href="experiences">Experiences</a>
+        <a class="nav-link" href="experience">Experiences</a>
         <a class="nav-link" href="boats">Boats</a>
         <a class="nav-link disabled">Disabled</a>
       </nav>

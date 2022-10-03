@@ -41,5 +41,15 @@ class  ExpView {
         $this->smarty->display('filterByBoat.tpl');
     }
 
+    function showFormAddBoat(){
+        $this->smarty->display('formAddBoat.tpl');
+    }
+
+    function showFormAddExp($boats){
+        //solo puede agergar boats que ya existan pasar datos para un select
+        $this->smarty->assign('boats', $boats);
+        $this->smarty->display('formAddExp.tpl');
+    }
+
 
 }

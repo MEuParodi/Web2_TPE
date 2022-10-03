@@ -21,15 +21,21 @@ class BoatsModel {
         return $boat;
     }
 
-    public function insert($name, $capacity, $model) {
+    public function insertBoat($name, $capacity, $model) {
         $query = $this->db->prepare("INSERT INTO boat (name, capacity, model) VALUES (?, ?, ?)");
         $query->execute([$name, $capacity, $model]);
         return $this->db->lastInsertId();
     }
 
+    // public function boatNames(){
+    //     $query = $this->db->prepare('SELECT DISTINCT "name" FROM boat'); //esta me pa que no es la consulta correcta
+    //     $query->execute();
+    //     $boat_ids = $query->fetch(PDO::FETCH_OBJ);
+    //     return $boat_ids;
+    // }
 
-    function deleteById($id) {
-        $query = $this->db->prepare('DELETE FROM boat WHERE id = ?');
+    public function deleteById($id) {
+        $query = $this->db->prepare('DELETE FROM boat WHERE boat_id = ?');
         $query->execute([$id]);
     }
 

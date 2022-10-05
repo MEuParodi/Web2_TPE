@@ -51,9 +51,6 @@ class MainController{
     public function deleteBoatById($id){
        $this->boatsModel->deleteById($id);
        $this->showAllBoats();
-
-//       header("Location: " . BASE_URL);
-
     }
 
     public function showAllBoats(){
@@ -62,11 +59,10 @@ class MainController{
     }
 
     function insertBoat() {
-       // if(!empty($GET) && isset($GET['name'])){
+       // if(!empty($GET) && isset($GET['name'])){ // no me anda esto igual la db lo que no esta bien lo pone en 0
             $name = $_GET['name'];
             $capacity = $_GET['capacity'];
             $model = $_GET['model'];
-            //verificar que los parametros vengan correctamente para poder insertar bien
             $id = $this->boatsModel->insertBoat($name, $capacity, $model); 
         //}    
         $this->showAllBoats();

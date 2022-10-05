@@ -18,7 +18,7 @@
                 <td> {$boat->name} </td> 
                 <td> {$boat->capacity} </td> 
                 <td> {$boat->model} </td> 
-                <td> <a href='modify/boat/{$boat->boat_id}' type="button" class='btn btn-outline-primary'>Modify</a> </td>
+                <td> <a href='edit/boat/{$boat->boat_id}' type="button" class='btn btn-outline-primary'>Update</a> </td>
                 <td> <a href='delete/boat/{$boat->boat_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
             </tr>
          {/foreach}

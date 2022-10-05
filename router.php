@@ -43,6 +43,7 @@ switch ($params[0]) {
         $mainController->add($tupla);
         break;
 
+
     case 'insert':
         if (isset($params[1])) {
             switch ($params[1]) {
@@ -77,16 +78,16 @@ switch ($params[0]) {
         }
         break;
 
-    case 'modify':
+    case 'edit':
         if (isset($params[1])) {
             switch ($params[1]) {
                 case  'experience':
                     $id = $params[2];
-                    $mainController->modifyExpById($id);
+                    $mainController->showFomEditExp($id);
                     break;
                 case  'boat':
                     $id = $params[2];
-                    $mainController->modifyBoatById($id);
+                    $mainController->showFomEditBoat($id);
                     break;
                 default:
                     echo ('404 Page not found');
@@ -94,6 +95,22 @@ switch ($params[0]) {
             }
         }
         break;
+
+        case 'update':
+            if (isset($params[1])) {
+                switch ($params[1]) {
+                    case  'experience':
+                        $mainController->updateExp();
+                        break;
+                    case  'boat':
+                        $mainController->updateBoat();
+                        break;
+                    default:
+                        echo ('404 Page not found');
+                        break;
+                }
+            }
+            break;
 
     default:
         echo ('404 Page not found');

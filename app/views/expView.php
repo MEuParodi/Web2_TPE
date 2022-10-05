@@ -42,14 +42,23 @@ class  ExpView {
     }
 
     function showFormAddBoat(){
-        $this->smarty->display('formAddBoat.tpl');
+        $this->smarty->display('addBoat.tpl');
     }
 
     function showFormAddExp($boats){
         //solo puede agergar boats que ya existan pasar datos para un select
         $this->smarty->assign('boats', $boats);
-        $this->smarty->display('formAddExp.tpl');
+        $this->smarty->display('addExp.tpl');
     }
 
+    function showFormEditBoat($boat){
+        $this->smarty->assign('boat', $boat);
+        $this->smarty->display('editBoat.tpl');
+    }
 
+    function showFormEditExp($exp, $boats){
+        $this->smarty->assign('exp', $exp);
+        $this->smarty->assign('boats', $boats);
+        $this->smarty->display('editExp.tpl');
+    }
 }

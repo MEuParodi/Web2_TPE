@@ -39,4 +39,10 @@ class BoatsModel {
         $query->execute([$id]);
     }
 
+    public function updateById($id, $name, $capacity, $model){
+        $query = $this->db->prepare("UPDATE boat SET name = ?, capacity = ?, model = ? WHERE boat_id = ?");
+        $query->execute([$name, $capacity, $model, $id]);
+
+    }
+
 }

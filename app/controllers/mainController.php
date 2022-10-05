@@ -62,11 +62,13 @@ class MainController{
     }
 
     function insertBoat() {
-        $name = $_GET['name'];
-        $capacity = $_GET['capacity'];
-        $model = $_GET['model'];
-        //verificar que los parametros vengan correctamente para poder insertar bien
-        $id = $this->boatsModel->insertBoat($name, $capacity, $model); 
+       // if(!empty($GET) && isset($GET['name'])){
+            $name = $_GET['name'];
+            $capacity = $_GET['capacity'];
+            $model = $_GET['model'];
+            //verificar que los parametros vengan correctamente para poder insertar bien
+            $id = $this->boatsModel->insertBoat($name, $capacity, $model); 
+        //}    
         $this->showAllBoats();
     }
 
@@ -86,6 +88,7 @@ class MainController{
         $this->expView->showFilterByBoat($boats);
     }
     
+    // esta esta diferente que las demas.... por ahi conviene hacer un  switch en el router
     function add ($tupla){
         if ($tupla == 'boat'){
             $this->expView->showFormAddBoat();
@@ -93,15 +96,42 @@ class MainController{
             if ($tupla == 'experience'){
                 $boats = $this->boatsModel->getAll();
                 $this->expView->showFormAddExp($boats);
-            }
+            } 
         }
     }
 
-    function modifyExpById($id){
-        return;
+    function showFomEditExp($id){
+        $exp = $this->expModel->getExpById($id);
+        $boats = $this->boatsModel->getAll();
+        $this->expView->showFormEditExp($exp, $boats); 
     }
 
-    function modifyBoatById($id){
-        return;
+    function updateExp($id){
+        if(!empty($_POST) && isset($_POST['exp_id'])){
+            $id = $_POST['exp_id'];
+            $place = $_POST['place'];
+            $days = $_POST['days'];
+            $price = $_POST['price'];
+            $description = $_POST['description'];
+            $boat_id = $_POST['boat_id'];
+            $this->boatsModel->updateById($id, $place, $days, $price, $description, $boat_id);
+            $this->showAllExp();
+        }
+    }
+
+    function showFomEditBoat($id){
+        $boat = $this->boatsModel->getBoatById($id);
+        $this->expView->showFormEditBoat($boat); 
+    }
+
+    function updateBoat(){
+        if(!empty($_POST) && isset($_POST['boat_id'])){
+            $id = $_POST['boat_id'];
+            $name = $_POST['name'];
+            $capacity = $_POST['capacity'];
+            $model = $_POST['model'];
+            $this->boatsModel->updateById($id, $name, $capacity, $model);
+            $this->showAllBoats();
+        }
     }
 }

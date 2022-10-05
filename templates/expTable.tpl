@@ -24,7 +24,7 @@
                 <td> {$exp->description|truncate:60} </td> 
                 <td> {$exp->boat_id} </td>
                 <td> <a href='experience/{$exp->exp_id}' type='button' class='btn btn-success'>Show details</a> </td>
-                <td> <a href='modify/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Modify</a> </td>
+                <td> <a href='update/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Update</a> </td>
                 <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
             </tr>
          {/foreach}

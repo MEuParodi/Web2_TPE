@@ -5,10 +5,9 @@
 
 <ul class="list-group">
     {foreach from=$boats item=$boat}
-        <li class="list-group-item"><a href='boats/{$boat->boat_id}'>{$boat->name}</a></li>
+        <li class="list-group-item"><a href='experience/boats/{$boat->boat_id}'>{$boat->name}</a></li>
     {/foreach}
     <li class="list-group-item"><a href='experience'>View all experiences</a></li>
 
 </ul>
 
-{include file="footer.tpl"}

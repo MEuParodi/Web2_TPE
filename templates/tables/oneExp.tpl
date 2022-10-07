@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="general/header.tpl"}
 
 <h1 class="mt-3"> This is your Experience !! <br></h1>
 
@@ -16,4 +16,3 @@
 </div>
 
 
-{include file="footer.tpl"}

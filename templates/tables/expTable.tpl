@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="general/header.tpl"}
 
 <h2 class="mt-5 mb-5">List of Experiences</h2>
 <table class="table table-success table-striped"">
@@ -10,8 +10,10 @@
             <th scope="col">description</th>
             <th scope="col">boat</th>
             <th scope="col">accions</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            {if isset($smarty.session.USER_ID)}
+                <th scope="col"></th>
+                <th scope="col"></th>
+            {/if} 
         </tr>
     </thead>
 
@@ -24,12 +26,14 @@
                 <td> {$exp->description|truncate:60} </td> 
                 <td> {$exp->boat_id} </td>
                 <td> <a href='experience/{$exp->exp_id}' type='button' class='btn btn-success'>Show details</a> </td>
-                <td> <a href='update/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Update</a> </td>
-                <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
+                {if isset($smarty.session.USER_ID)}
+                    <td> <a href='edit/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Edit</a> </td>
+                    <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
+                {/if}   
             </tr>
          {/foreach}
     </tbody> 
 </table>
-
-<p><a href='add/experience' type="button" class="btn btn-outline-primary">Add experience</a> </p>
-
+{if isset($smarty.session.USER_ID)}
+    <p><a href='add/experience' type="button" class="btn btn-outline-primary">Add experience</a> </p>
+{/if}

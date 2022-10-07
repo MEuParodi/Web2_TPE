@@ -1,9 +1,5 @@
 <?php
 
-       // JOIN:
-       // $query = $this->db->prepare("SELECT * FROM experiences JOIN 
-       //         boat ON experiences.boat_id = boat.boat_id WHERE experiences.boat_id = ? ");
-
 class ExpModel {
     private $db;
 
@@ -31,8 +27,8 @@ class ExpModel {
         $exps = $query->fetchAll(PDO::FETCH_OBJ); 
         return $exps;
     }
-
-        public function insertExp($place, $days, $price, $description, $boat_id) {
+    
+    public function insertExp($place, $days, $price, $description, $boat_id) {
         $query = $this->db->prepare("INSERT INTO experiences (place, days, price, description, boat_id) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$place, $days, $price, $description, $boat_id]);
         return $this->db->lastInsertId();
@@ -42,5 +38,12 @@ class ExpModel {
         $query = $this->db->prepare('DELETE FROM experiences WHERE exp_id = ?');
         $query->execute([$id]);
     }
+
+    function updateById($id, $place, $days, $price, $description, $boat_id){
+        $query = $this->db->prepare("UPDATE experiences SET place =?, days =?, price =?, description =?, boat_id =? 
+        WHERE exp_id = ?");
+        $query->execute([$place, $days, $price, $description, $boat_id, $id]);
+    }
+
 
 }

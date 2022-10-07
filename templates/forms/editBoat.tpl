@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="general/header.tpl"}
 
 <h2 class="mt-5 mb-5">Updating Boat</h2>
 <form action="update/boat" method="POST" class="my-4">
@@ -23,4 +23,3 @@
         </tbody> 
     </table> 
 </form>
-

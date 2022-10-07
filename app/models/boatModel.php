@@ -27,18 +27,11 @@ class BoatsModel {
         return $this->db->lastInsertId();
     }
 
-    // public function boatNames(){
-    //     $query = $this->db->prepare('SELECT DISTINCT "name" FROM boat'); //esta me pa que no es la consulta correcta
-    //     $query->execute();
-    //     $boat_ids = $query->fetch(PDO::FETCH_OBJ);
-    //     return $boat_ids;
-    // }
-
     public function deleteById($id) {
         $query = $this->db->prepare('DELETE FROM boat WHERE boat_id = ?');
         $query->execute([$id]);
     }
-
+    
     public function updateById($id, $name, $capacity, $model){
         $query = $this->db->prepare("UPDATE boat SET name = ?, capacity = ?, model = ? WHERE boat_id = ?");
         $query->execute([$name, $capacity, $model, $id]);

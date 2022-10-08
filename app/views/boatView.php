@@ -8,17 +8,19 @@ class  boatView {
         $this->smarty = new Smarty(); 
     }
 
-     function showAll($boats) {
+    public function showAll($boats, $warning = null , $boat_id = null) {
     //    $this->smarty->assign('count', count($boats)); 
         $this->smarty->assign('boats', $boats);
+        $this->smarty->assign('warning', $warning);
+        $this->smarty->assign('boat_to_delete', $boat_id);
         $this->smarty->display('tables/boats.tpl');
     }
 
-    function showFormAddBoat(){
+    public function showFormAddBoat(){
         $this->smarty->display('forms/addBoat.tpl');
     }
 
-    function showFormEditBoat($boat){
+    public function showFormEditBoat($boat){
         $this->smarty->assign('boat', $boat);
         $this->smarty->display('forms/editBoat.tpl');
     }

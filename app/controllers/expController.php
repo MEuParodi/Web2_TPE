@@ -6,13 +6,13 @@ require_once './app/views/expView.php';
 
 class ExpController{
     private $expModel;
-    private $boatsModel;
+    private $boatModel;
     private $expView;
     private $authHelper;
 
     public function __construct() {
         $this->expModel = new ExpModel();
-        $this->boatsModel = new BoatsModel();
+        $this->boatModel = new BoatModel();
         $this->expView = new ExpView();
         if (session_status() != PHP_SESSION_ACTIVE) {
             session_start();
@@ -20,21 +20,17 @@ class ExpController{
     }
 
     public function showAll(){
-
-var_dump($_SESSION);
-
         $exps = $this->expModel->getAll();
         foreach ($exps as $exp){
-            $exp->boat_id = $this->boatsModel->getBoatById($exp->boat_id)->name;
+            $exp->boat_id = $this->boatModel->getBoatById($exp->boat_id)->name;
         }
         $this->expView->showExps($exps);
         $this->showFilterByBoat();
     }
 
-    // ver si anda!! usa el nombre del boat que lo trae del boatController
     public function showById($id){
         $exp = $this->expModel->getExpById($id);
-        $boat = $this->boatsModel->getBoatById($exp->boat_id);
+        $boat = $this->boatModel->getBoatById($exp->boat_id);
         $this->expView->showExpById($exp, $boat);
     }
 
@@ -53,7 +49,7 @@ var_dump($_SESSION);
     }
 
     public function showFilterByBoat(){
-        $boats = $this->boatsModel->getAll();
+        $boats = $this->boatModel->getAll();
         $this->expView->showFilterByBoat($boats);
     }
 
@@ -62,7 +58,7 @@ var_dump($_SESSION);
         $authHelper = new AuthHelper();
         $authHelper->checkLoggedIn();
 
-        $boats = $this->boatsModel->getAll();
+        $boats = $this->boatModel->getAll();
         $this->expView->showFormAddExp($boats);
     }
 
@@ -89,14 +85,14 @@ var_dump($_SESSION);
         $authHelper->checkLoggedIn();
 
         $exp = $this->expModel->getExpById($id);
-        $boats = $this->boatsModel->getAll();
+        $boats = $this->boatModel->getAll();
         $this->expView->showFormEditExp($exp, $boats); 
     }
 
     public function ExpByBoat($boat_id){
         $exps = $this->expModel->getExpByBoat($boat_id);
         foreach ($exps as $exp){
-            $exp->boat_id = $this->boatsModel->getBoatById($exp->boat_id)->name;
+            $exp->boat_id = $this->boatModel->getBoatById($exp->boat_id)->name;
         }
         $this->expView->showExps($exps);
         $this->showFilterByBoat();
@@ -105,7 +101,7 @@ var_dump($_SESSION);
     
     public function showExpById($id){
         $exp = $this->expModel->getExpById($id);
-        $boat = $this->boatsModel->getBoatById($exp->boat_id);
+        $boat = $this->boatModel->getBoatById($exp->boat_id);
         $this->expView->showExpById($exp, $boat);
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-class BoatsModel {
+class BoatModel {
     private $db;
 
     public function __construct() {
@@ -21,9 +21,9 @@ class BoatsModel {
         return $boat;
     }
 
-    public function insertBoat($name, $capacity, $model) {
-        $query = $this->db->prepare("INSERT INTO boat (name, capacity, model) VALUES (?, ?, ?)");
-        $query->execute([$name, $capacity, $model]);
+    public function insertBoat($name, $capacity, $model, $image) {
+        $query = $this->db->prepare("INSERT INTO boat (name, capacity, model, image) VALUES (?, ?, ?, ?)");
+        $query->execute([$name, $capacity, $model, $image]);
         return $this->db->lastInsertId();
     }
 
@@ -32,9 +32,9 @@ class BoatsModel {
         $query->execute([$id]);
     }
     
-    public function updateById($id, $name, $capacity, $model){
-        $query = $this->db->prepare("UPDATE boat SET name = ?, capacity = ?, model = ? WHERE boat_id = ?");
-        $query->execute([$name, $capacity, $model, $id]);
+    public function updateById($id, $name, $capacity, $model, $image){
+        $query = $this->db->prepare("UPDATE boat SET name = ?, capacity = ?, model = ?, image = ? WHERE boat_id = ?");
+        $query->execute([$name, $capacity, $model, $image, $id]);
 
     }
 

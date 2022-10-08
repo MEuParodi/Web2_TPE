@@ -97,7 +97,14 @@ switch ($params[0]) {
             }
         }
         break;
-    case 'edit':
+
+    case 'remove':
+        $id = $params[2];
+        $boatController = new BoatController();
+        $boatController->removeById($id);
+        break;
+
+        case 'edit':
         if (isset($params[1])) {
             switch ($params[1]) {
                 case  'experience':
@@ -116,6 +123,7 @@ switch ($params[0]) {
             }
         }
         break;
+
     case 'update':
         if (isset($params[1])) {
             switch ($params[1]) {

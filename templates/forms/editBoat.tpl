@@ -9,6 +9,7 @@
                 <th scope="col">name</th>
                 <th scope="col">capacity</th>
                 <th scope="col">model</th>
+                <th scope="col">image</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                     <td> <input name="name" type="text" value= "{$boat->name}" class="form-control"> </td> 
                     <td> <input name="capacity" type="text" value= "{$boat->capacity}" class="form-control"> </td> 
                     <td> <input name="model" type="text" value= "{$boat->model}" class="form-control"> </td> 
+                    <td> <input name="image" type="text" value= "{$boat->image}" class="form-control"> </td> 
                     <td> <button type="submit" class="btn">Update</button> </td>
                 </tr>
         </tbody> 

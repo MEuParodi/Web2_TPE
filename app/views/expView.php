@@ -23,6 +23,7 @@ class  expView {
         $this->smarty->assign('name', $boat->name);
         $this->smarty->assign('capacity', $boat->capacity);
         $this->smarty->assign('model', $boat->model);
+        $this->smarty->assign('image', $boat->image);
         $this->smarty->display('tables/oneExp.tpl');
     }
 

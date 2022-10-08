@@ -16,11 +16,11 @@ class  boatView {
         $this->smarty->display('tables/boats.tpl');
     }
 
-    public function showFormAddBoat(){
+    public function showFormAdd(){
         $this->smarty->display('forms/addBoat.tpl');
     }
 
-    public function showFormEditBoat($boat){
+    public function showFormEdit($boat){
         $this->smarty->assign('boat', $boat);
         $this->smarty->display('forms/editBoat.tpl');
     }

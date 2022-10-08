@@ -9,13 +9,13 @@ class  expView {
     }
 
   
-    function showExps($exps) {
+    function showAll($exps) {
         $this->smarty->assign('exps', $exps);
-        $this->smarty->display('tables/expTable.tpl');
+        $this->smarty->display('tables/experiences.tpl');
     }
 
     //muestra todos los detalles en una tarjeta
-    function showExpById($exp, $boat) {
+    function showById($exp, $boat) {
         $this->smarty->assign('place', $exp->place);
         $this->smarty->assign('days', $exp->days);
         $this->smarty->assign('price', $exp->price);
@@ -33,13 +33,13 @@ class  expView {
     }
 
 
-    function showFormAddExp($boats){
+    function showFormAdd($boats){
         //solo puede agergar boats que ya existan pasar datos para un select
         $this->smarty->assign('boats', $boats);
         $this->smarty->display('forms/addExp.tpl');
     }
 
-     function showFormEditExp($exp, $boats){
+     function showFormEdit($exp, $boats){
         $this->smarty->assign('exp', $exp);
         $this->smarty->assign('boats', $boats);
         $this->smarty->display('forms/editExp.tpl');

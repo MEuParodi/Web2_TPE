@@ -1,7 +1,6 @@
 <main class="container">
 
-<h2 class="mt-5 mb_3">Want to know experiences by boat?</h2>
-<p class="mb_3"> These are our boats, select one:</p>
+<h3 class="mt-5 mb_3">Want to know experiences by boat?</h3>
 
 <ul class="list-group">
     {foreach from=$boats item=$boat}

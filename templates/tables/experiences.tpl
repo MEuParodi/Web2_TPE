@@ -1,6 +1,6 @@
 {include file="general/header.tpl"}
 
-<h2 class="mt-5 mb-5">List of Experiences</h2>
+<h3 class="mt-5 mb-3">List of Experiences</h3>
 <table class="table table-success table-striped"">
     <thead>
         <tr>
@@ -25,10 +25,10 @@
                 <td> {$exp->price} </td> 
                 <td> {$exp->description|truncate:60} </td> 
                 <td> {$exp->boat_id} </td>
-                <td> <a href='experience/{$exp->exp_id}' type='button' class='btn btn-success'>Show details</a> </td>
+                <td> <a href='experience/{$exp->exp_id}' type='button' class='btn btn-sm btn-success'>Show details</a> </td>
                 {if isset($smarty.session.USER_ID)}
-                    <td> <a href='edit/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Edit</a> </td>
-                    <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-outline-primary'>Delete</a> </td>
+                    <td> <a href='edit/experience/{$exp->exp_id}' type="button" class='btn btn-sm btn-outline-primary'>Edit</a> </td>
+                    <td> <a href='delete/experience/{$exp->exp_id}' type="button" class='btn btn-sm btn-outline-primary'>Delete</a> </td>
                 {/if}   
             </tr>
          {/foreach}

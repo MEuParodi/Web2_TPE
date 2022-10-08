@@ -22,9 +22,9 @@
                     <td> <input name="price" type="text" value= "{$exp->price}" class="form-control"> </td> 
                     <td> <input name="description" type="text" value= "{$exp->description}" class="form-control"> </td> 
                     <td> <select name="boat_id" class="form-select" aria-label="Default select example">
-                                {foreach from = $boats item = $boat}
-                                    <option value="{$boat->boat_id}">{$boat->name}</option>
-                                {/foreach}
+                            {foreach from = $boats item = $boat}
+                                <option {if ($exp->boat_id== $boat->boat_id)} selected {/if} value="{$boat->boat_id}">{$boat->name}</option>
+                            {/foreach}
                          </select>
                     <td> <button type="submit" class="btn">Update</button> </td>
                 </tr>

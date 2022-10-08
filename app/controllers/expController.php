@@ -22,30 +22,16 @@ class ExpController{
     public function showAll(){
         $exps = $this->expModel->getAll();
         foreach ($exps as $exp){
-            $exp->boat_id = $this->boatModel->getBoatById($exp->boat_id)->name;
+            $exp->boat_id = $this->boatModel->getById($exp->boat_id)->name;
         }
-        $this->expView->showExps($exps);
+        $this->expView->showAll($exps);
         $this->showFilterByBoat();
     }
 
     public function showById($id){
-        $exp = $this->expModel->getExpById($id);
-        $boat = $this->boatModel->getBoatById($exp->boat_id);
-        $this->expView->showExpById($exp, $boat);
-    }
-
-    public function insert() {
-        // barrera de seguridad
-        $authHelper = new AuthHelper();
-        $authHelper->checkLoggedIn();
-
-        $place = $_POST['place'];
-        $days = $_POST['days'];
-        $price = $_POST['price'];
-        $description = $_POST['description'];
-        $boat_id = $_POST['boat_id'];
-        $id = $this->expModel->insertExp($place, $days, $price, $description, $boat_id);
-        $this->showAll();
+        $exp = $this->expModel->getById($id);
+        $boat = $this->boatModel->getById($exp->boat_id);
+        $this->expView->showById($exp, $boat);
     }
 
     public function showFilterByBoat(){
@@ -53,20 +39,42 @@ class ExpController{
         $this->expView->showFilterByBoat($boats);
     }
 
-    public function add (){
-        // barrera de seguridad
+    public function ShowExpByBoat($boat_id){
+        $exps = $this->expModel->getByBoat($boat_id);
+        foreach ($exps as $exp){
+            $exp->boat_id = $this->boatModel->getById($exp->boat_id)->name;
+        }
+        $this->expView->showAll($exps);
+        $this->showFilterByBoat();
+    }
+
+    // *********** admin functions ****************
+
+    public function securityBar(){
+        // barrera de seguridad 
         $authHelper = new AuthHelper();
         $authHelper->checkLoggedIn();
+    }
 
+    public function insert() {
+        $this->securityBar();
+        $place = $_POST['place'];
+        $days = $_POST['days'];
+        $price = $_POST['price'];
+        $description = $_POST['description'];
+        $boat_id = $_POST['boat_id'];
+        $id = $this->expModel->insert($place, $days, $price, $description, $boat_id);
+        $this->showAll();
+    }
+
+    public function add (){
+        $this->securityBar();
         $boats = $this->boatModel->getAll();
-        $this->expView->showFormAddExp($boats);
+        $this->expView->showFormAdd($boats);
     }
 
     public function update(){
-        // barrera de seguridad
-        $authHelper = new AuthHelper();
-        $authHelper->checkLoggedIn();
-        
+        $this->securityBar();
         if(!empty($_POST) && isset($_POST['exp_id'])){
             $id = $_POST['exp_id'];
             $place = $_POST['place'];
@@ -80,36 +88,15 @@ class ExpController{
     }
 
     public function Edit($id){
-        // barrera de seguridad
-        $authHelper = new AuthHelper();
-        $authHelper->checkLoggedIn();
-
-        $exp = $this->expModel->getExpById($id);
+        $this->securityBar();
+        $exp = $this->expModel->getById($id);
         $boats = $this->boatModel->getAll();
-        $this->expView->showFormEditExp($exp, $boats); 
+        $this->expView->showFormEdit($exp, $boats); 
     }
 
-    public function ExpByBoat($boat_id){
-        $exps = $this->expModel->getExpByBoat($boat_id);
-        foreach ($exps as $exp){
-            $exp->boat_id = $this->boatModel->getBoatById($exp->boat_id)->name;
-        }
-        $this->expView->showExps($exps);
-        $this->showFilterByBoat();
-    }
-
-    
-    public function showExpById($id){
-        $exp = $this->expModel->getExpById($id);
-        $boat = $this->boatModel->getBoatById($exp->boat_id);
-        $this->expView->showExpById($exp, $boat);
-    }
 
     public function deleteById($id){
-        // barrera de seguridad
-        $authHelper = new AuthHelper();
-        $authHelper->checkLoggedIn();
-
+        $this->securityBar();
         $this->expModel->deleteById($id);
         $this->showAll();
     }

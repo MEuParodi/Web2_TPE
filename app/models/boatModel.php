@@ -14,14 +14,14 @@ class BoatModel {
         return $boats;
     }
 
-    public function getBoatById($id) {
+    public function getById($id) {
         $query = $this->db->prepare("SELECT * FROM boat WHERE boat_id = ?");
         $query->execute([$id]);
         $boat = $query->fetch(PDO::FETCH_OBJ); 
         return $boat;
     }
 
-    public function insertBoat($name, $capacity, $model, $image) {
+    public function insert($name, $capacity, $model, $image) {
         $query = $this->db->prepare("INSERT INTO boat (name, capacity, model, image) VALUES (?, ?, ?, ?)");
         $query->execute([$name, $capacity, $model, $image]);
         return $this->db->lastInsertId();

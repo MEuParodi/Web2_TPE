@@ -31,7 +31,7 @@ switch ($params[0]) {
         if (isset($params[1])) {
             if (isset($params[2]) && ($params[1] == 'boats')) { //experience/boats/:boat_id
                 $id = $params[2];
-                $expController->ExpByBoat($id);
+                $expController->ShowExpByBoat($id);
             } else {
                 $id = $params[1]; //experience/:id
                 $expController->showById($id);

@@ -5,8 +5,8 @@
 {if isset($warning)}
   <div class="alert alert-danger mt-3">
     Warning! {$warning} <br>
-    <a href='remove/boat/{$boat_to_delete}' type="button" class='btn btn-sm btn-outline-primary'>Delete</a>
-    <a href='boat' type="button" class='btn btn-sm btn-outline-primary'>Cancel</a>
+      <a href='remove/boat/{$boat_to_delete}' type="button" class='btn btn-sm btn-outline-primary'>Delete</a>
+      <a href='boat' type="button" class='btn btn-sm btn-outline-primary'>Cancel</a>
   </div>
 {/if} 
 

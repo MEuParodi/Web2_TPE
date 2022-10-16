@@ -21,6 +21,13 @@ class BoatModel {
         return $boat;
     }
 
+    public function getByName($name) {
+        $query = $this->db->prepare("SELECT * FROM boat WHERE name = ?");
+        $query->execute([$name]);
+        $boat = $query->fetch(PDO::FETCH_OBJ); 
+        return $boat;
+    }
+
     public function insert($name, $capacity, $model, $image) {
         $query = $this->db->prepare("INSERT INTO boat (name, capacity, model, image) VALUES (?, ?, ?, ?)");
         $query->execute([$name, $capacity, $model, $image]);

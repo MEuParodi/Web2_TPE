@@ -6,7 +6,7 @@ require_once './app/controllers/expController.php';
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 
-$action = 'experience'; // acción por default si no envían
+$action = 'experience'; 
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
